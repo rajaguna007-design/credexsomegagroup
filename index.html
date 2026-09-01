@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CREDEXS OMEGA GROUP - Membership Form</title>
+  <style>
+    :root {
+      --primary: #1a365d;
+      --secondary: #2b6cb0;
+      --light-bg: #f7fafc;
+      --border-color: #cbd5e0;
+      --text-dark: #2d3748;
+      --required-color: #e53e3e;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background-color: #e2e8f0;
+      padding: 20px;
+      color: var(--text-dark);
+    }
+    .form-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 30px 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .header h1 {
+      font-size: 24px;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .header h2 {
+      font-size: 16px;
+      color: var(--secondary);
+      margin-top: 5px;
+      letter-spacing: 0.5px;
+    }
+    .mandatory-notice {
+      background-color: #fff5f5;
+      color: #c53030;
+      border: 1px solid #feb2b2;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 12px;
+      text-align: center;
+    }
+    .section-title {
+      background-color: #edf2f7;
+      color: var(--primary);
+      padding: 8px 12px;
+      font-size: 14px;
+      font-weight: 700;
+      margin: 20px 0 15px 0;
+      border-left: 4px solid var(--secondary);
+      border-radius: 2px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 15px;
+    }
+    .form-group {
+      margin-bottom: 12px;
+    }
+    .form-group.full-width {
+      grid-column: span 2;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #4a5568;
+    }
+    .req {
+      color: var(--required-color);
+      margin-left: 3px;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="date"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 2px rgba(43, 108, 176, 0.2);
+    }
+    input:invalid, textarea:invalid {
+      border-color: #cbd5e0;
+    }
+    .radio-group {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      margin-top: 6px;
+      font-size: 13px;
+    }
+    .radio-group label {
+      font-weight: normal;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .upload-card {
+      border: 1px solid var(--border-color);
+      background-color: var(--light-bg);
+      padding: 12px;
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .upload-card p {
+      font-size: 12px;
+      color: #718096;
+      margin-bottom: 8px;
+    }
+    .upload-card input[type="file"] {
+      font-size: 12px;
+      background: #fff;
+      padding: 6px;
+      border: 1px dashed var(--border-color);
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .declaration {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 15px;
+      border-radius: 6px;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-top: 20px;
+    }
+    .btn-container {
+      margin-top: 25px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    .btn {
+      padding: 10px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .btn-submit {
+      background-color: var(--secondary);
+      color: #ffffff;
+    }
+    .btn-submit:hover {
+      background-color: var(--primary);
+    }
+    .btn-print {
+      background-color: #718096;
+      color: #ffffff;
+    }
+    .btn-print:hover {
+      background-color: #4a5568;
+    }
+    @media (max-width: 600px) {
+      .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
+      }
+      .form-group.full-width {
+        grid-column: span 1;
+      }
+      .form-container {
+        padding: 20px;
+      }
+    }
+    @media print {
+      body {
+        background: transparent;
+        padding: 0;
+      }
+      .btn-container, .upload-card input[type="file"], .mandatory-notice {
+        display: none;
+      }
+      .form-container {
+        box-shadow: none;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-container">
+  <div class="header">
+    <h1>CREDEXS OMEGA GROUP</h1>
+    <h2>Membership Form</h2>
+    <div class="mandatory-notice">
+      Note: Fields marked with asterisk (<span class="req">*</span>) are MANDATORY.
+    </div>
+  </div>
+
+  <!-- Netlify Form -->
+  <form name="membership-application" method="POST" data-netlify="true" enctype="multipart/form-data">
+    <input type="hidden" name="form-name" value="membership-application" />
+
+    <!-- Top Metadata -->
+    <div class="grid-3">
+      <!-- Optional Field -->
+      <div class="form-group">
+        <label>Member ID</label>
+        <input type="text" name="member_id" placeholder="Enter Member ID (Optional)" />
+      </div>
+      <!-- Optional Field -->
+      <div class="form-group">
+        <label>SB A/c No.</label>
+        <input type="text" name="sb_account_no" placeholder="Enter Account Number (Optional)" />
+      </div>
+      <div class="form-group">
+        <label>Application Date <span class="req">*</span></label>
+        <input type="date" name="application_date" required />
+      </div>
+    </div>
+
+    <!-- 1. PERSONAL DETAILS -->
+    <div class="section-title">1. PERSONAL DETAILS</div>
+    <div class="grid-2">
+      <div class="form-group full-width">
+        <label>1. Full Name (As per Aadhaar/PAN) <span class="req">*</span></label>
+        <input type="text" name="applicant_name" placeholder="Full Name" required />
+      </div>
+      <div class="form-group">
+        <label>2. Date of Birth <span class="req">*</span></label>
+        <input type="date" name="dob" required />
+      </div>
+      <div class="form-group">
+        <label>Place of Birth</label>
+        <input type="text" name="place_of_birth" placeholder="City / Town" />
+      </div>
+      <div class="form-group">
+        <label>3. Mobile Number <span class="req">*</span></label>
+        <input type="tel" name="mobile_number" placeholder="10-digit Mobile Number" pattern="[0-9]{10}" title="Please enter a valid 10-digit mobile number" required />
+      </div>
+      <div class="form-group">
+        <label>6. Email Address</label>
+        <input type="email" name="email" placeholder="example@domain.com" />
+      </div>
+      <div class="form-group">
+        <label>4. Aadhaar Number <span class="req">*</span></label>
+        <input type="text" name="aadhaar_number" placeholder="12-digit Aadhaar Number" pattern="[0-9]{12}" title="Please enter 12-digit Aadhaar number" required />
+      </div>
+<div class="form-group">
+  <label>5. PAN Card Number</label>
+  <input type="text" name="pan_number" placeholder="ABCDE1234F" style="text-transform:uppercase" pattern="[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}" title="Please enter a valid 10-character PAN (e.g. ABCDE1234F)" />
+</div>
+      <div class="form-group">
+        <label>Education</label>
+        <input type="text" name="education" placeholder="Highest Qualification" />
+      </div>
+      <div class="form-group">
+        <label>17. Category</label>
+        <div class="radio-group">
+          <label><input type="radio" name="category" value="OBC" /> OBC</label>
+          <label><input type="radio" name="category" value="SC" /> S.C</label>
+          <label><input type="radio" name="category" value="ST" /> S.T</label>
+          <label><input type="radio" name="category" value="Others" /> Others</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. OCCUPATION & EMPLOYMENT DETAILS -->
+    <div class="section-title">2. OCCUPATION & EMPLOYMENT DETAILS</div>
+    <div class="grid-2">
+      <div class="form-group">
+        <label>7. Occupation</label>
+        <input type="text" name="occupation" placeholder="Current Occupation" />
+      </div>
+      <div class="form-group">
+        <label>Employment Type</label>
+        <div class="radio-group">
+          <label><input type="radio" name="employment_type" value="Salaried" /> Salaried</label>
+          <label><input type="radio" name="employment_type" value="Self Employed" /> Self Employed</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>8. Emp. ID No.</label>
+        <input type="text" name="employee_id" placeholder="Employee ID (Enter N/A if not applicable)" />
+      </div>
+      <div class="form-group">
+        <label>Business / Company Name</label>
+        <input type="text" name="business_name" placeholder="Company / Business Name" />
+      </div>
+      <div class="form-group">
+        <label>9. Department</label>
+        <input type="text" name="department" placeholder="Department (Enter N/A if not applicable)" />
+      </div>
+      <div class="form-group">
+        <label>Designation</label>
+        <input type="text" name="designation" placeholder="Job Role / Title" />
+      </div>
+      <div class="form-group full-width">
+        <label>Monthly Income (₹)</label>
+        <input type="number" name="monthly_income" placeholder="Monthly Income in Rupees" />
+      </div>
+    </div>
+
+    <!-- 3. FAMILY & ADDRESS DETAILS -->
+    <div class="section-title">3. FAMILY & ADDRESS DETAILS</div>
+    <div class="grid-2">
+      <div class="form-group full-width">
+        <label>10. Father's Name <span class="req">*</span></label>
+        <input type="text" name="father_name" placeholder="Father's Full Name" required />
+      </div>
+      <div class="form-group full-width">
+        <label>11. Mother's Name (with surname) <span class="req">*</span></label>
+        <input type="text" name="mother_name" placeholder="Mother's Full Name" required />
+      </div>
+      <div class="form-group full-width">
+        <label>12. Spouse Name <span class="req">*</span></label>
+        <input type="text" name="spouse_name" placeholder="Spouse's Full Name (Enter N/A if unmarried)" required />
+      </div>
+      <div class="form-group">
+        <label>13. Spouse Mobile Number <span class="req">*</span></label>
+        <input type="tel" name="spouse_mobile" placeholder="Mobile Number (Enter 0000000000 if N/A)" required />
+      </div>
+      <div class="form-group">
+        <label>14. Spouse Date of Birth <span class="req">*</span></label>
+        <input type="date" name="spouse_dob" required />
+      </div>
+      <div class="form-group full-width">
+        <label>15. Present Address (with Landmark)</label>
+        <textarea name="present_address" rows="2" placeholder="Street Address, Landmark, City, PIN"></textarea>
+      </div>
+      <div class="form-group full-width">
+        <label>16. Permanent Address</label>
+        <textarea name="permanent_address" rows="2" placeholder="Permanent Home Address"></textarea>
+      </div>
+    </div>
+
+    <!-- 4. NOMINEE DETAILS -->
+    <div class="section-title">4. NOMINEE DETAILS</div>
+    <div class="grid-2">
+      <div class="form-group">
+        <label>18. Nominee Name <span class="req">*</span></label>
+        <input type="text" name="nominee_name" placeholder="Nominee Full Name" required />
+      </div>
+      <div class="form-group">
+        <label>23. Nominee Relationship</label>
+        <input type="text" name="nominee_relationship" placeholder="Relationship with Applicant" />
+      </div>
+      <div class="form-group">
+        <label>19. Nominee Mobile Number <span class="req">*</span></label>
+        <input type="tel" name="nominee_mobile" placeholder="Nominee Contact Number" pattern="[0-9]{10}" title="Please enter 10-digit mobile number" required />
+      </div>
+      <div class="form-group">
+        <label>20. Nominee Date of Birth <span class="req">*</span></label>
+        <input type="date" name="nominee_dob" required />
+      </div>
+      <div class="form-group">
+        <label>21. Nominee Aadhaar Number <span class="req">*</span></label>
+        <input type="text" name="nominee_aadhaar" placeholder="12-digit Aadhaar Number" pattern="[0-9]{12}" title="Please enter 12-digit Aadhaar number" required />
+      </div>
+      <div class="form-group">
+        <label>22. Nominee PAN Card Number</label>
+        <input type="text" name="nominee_pan" placeholder="ABCDE1234F" style="text-transform:uppercase" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" title="Please enter a valid 10-character PAN" />
+      </div>
+      <div class="form-group full-width">
+        <label>24. Nominee Address</label>
+        <textarea name="nominee_address" rows="2" placeholder="Nominee Full Address"></textarea>
+      </div>
+    </div>
+
+    <!-- 5. DOCUMENT & FILE UPLOADS -->
+    <div class="section-title">5. DOCUMENT UPLOADS & ATTACHMENTS</div>
+    <div class="grid-2">
+      <div class="upload-card">
+        <label>Applicant Passport Size Photo</label>
+        <p>Upload a clear, recent passport size photo.</p>
+        <input type="file" name="upload_applicant_photo" accept="image/*" />
+      </div>
+      <div class="upload-card">
+        <label>Applicant Aadhaar Card <span class="req">*</span></label>
+        <p>Upload front & back combined copy (Image or PDF).</p>
+        <input type="file" name="upload_aadhaar" accept="image/*,.pdf" required />
+      </div>
+      <div class="upload-card">
+        <label>Applicant PAN Card</label>
+        <p>Upload clear PAN Card copy (Image or PDF).</p>
+        <input type="file" name="upload_pan" accept="image/*,.pdf" />
+      </div>
+      <div class="upload-card">
+        <label>Applicant Specimen Signature <span class="req">*</span></label>
+        <p>Upload scanned/photographed signature image.</p>
+        <input type="file" name="upload_signature" accept="image/*" required />
+      </div>
+      <div class="upload-card">
+        <label>Nominee ID Proof</label>
+        <p>Aadhaar / PAN / Voter ID of Nominee (Image or PDF).</p>
+        <input type="file" name="upload_nominee_id" accept="image/*,.pdf" />
+      </div>
+      
+      <!-- Optional Field -->
+      <div class="upload-card">
+        <label>Additional Proof / Income Proof</label>
+        <p>Salary Slip / Employment ID / Address Proof (Optional).</p>
+        <input type="file" name="upload_additional" accept="image/*,.pdf" />
+      </div>
+    </div>
+
+    <!-- DECLARATION -->
+    <div class="declaration">
+      <strong>Declaration:</strong> I hereby certify that the particulars given above and the attached documents/proofs are true to the best of my knowledge and belief. I agree to abide by the rules and terms & conditions of CREDEXS OMEGA GROUP from time to time.
+      <br /><br />
+      <div class="grid-2">
+        <div>
+          <label>Place</label>
+          <input type="text" name="declaration_place" placeholder="City / Branch Place" />
+        </div>
+        <div>
+          <label>Confirmation</label>
+          <div style="margin-top: 8px;">
+            <label><input type="checkbox" name="terms_accepted" /> I accept the declaration terms</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="btn-container">
+      <button type="submit" class="btn btn-submit">Submit Application</button>
+      <button type="button" class="btn btn-print" onclick="window.print()">Print / Save PDF</button>
+    </div>
+  </form>
+</div>
+
+</body>
+</html>
